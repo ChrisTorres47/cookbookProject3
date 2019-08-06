@@ -21,7 +21,7 @@ function Login(props) {
                 </FormGroup>
                 <Button id="loginBtn" onClick={props.handleLogin} block>Login</Button>
                 <p className="signupLink">
-                    <Link to="/signup">dont have an account?  Sign up here</Link>
+                    <Link to="/signup">Don't have an account?  Sign up here</Link>
                 </p>
             </Form>
         </div>

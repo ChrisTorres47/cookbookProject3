@@ -9,7 +9,7 @@
     background: $primary-color;
     box-shadow: 1px 7px 3px 8px $dark-text;
     font-family: $text-font;
-    color: $light-text;
+    color: $dark-text;
     p {
         line-height: $footer-height;
         width: 33%;
@@ -19,7 +19,7 @@
     }
 
     .gh-icon {
-        color: $light-text;
+        color: $dark-text;
         font-size: 1.3em;
     }
 
