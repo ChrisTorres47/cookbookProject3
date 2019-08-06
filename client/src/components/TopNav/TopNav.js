@@ -56,7 +56,7 @@ export default class Navigation extends Component {
         return (
             <div>
                 <Navbar className="navbar" light expand="md">
-                    <NavbarBrand href="/" className="titleFont"><i className="fas fa-coffee"></i> CookBook</NavbarBrand>
+                    <NavbarBrand href="/" className="titleFont"><i className="fas fa-coffee"></i>  My Custom Cookbook</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
