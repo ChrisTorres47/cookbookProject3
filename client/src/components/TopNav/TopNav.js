@@ -15,6 +15,8 @@ import {
     DropdownItem,
 } from 'reactstrap';
 
+
+
 export default class Navigation extends Component {
 
     constructor(props) {
@@ -85,6 +87,9 @@ export default class Navigation extends Component {
                                             <DropdownItem>
                                                 <NavLink href="/signup">signup</NavLink>
                                             </DropdownItem>
+                                            <DropdownItem>
+                                                <NavLink href="../../pages/Add/add.js">Add Recipe</NavLink>
+                                            </DropdownItem>
                                         </>
                                     )}
                                 </DropdownMenu>
@@ -96,3 +101,5 @@ export default class Navigation extends Component {
         );
     }
 }
+
+
