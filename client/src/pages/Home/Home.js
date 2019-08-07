@@ -8,20 +8,23 @@ class Home extends Component {
 
   state = {
     loggedIn: false,
-    joke: ""
+    featuredfood: "",
+    
   };
 
   componentDidMount() {
-    this.getJoke();
+    this.getfood();
     this.loggedIn();
   }
 
-  getJoke = () => {
-    API.ChuckNorris().then(joke => {
-      let newJoke = joke.data.value.joke.replace(/&quot;/g, '"');
-      this.setState({
-        joke: newJoke
-      })
+  getfood = () => {
+    API.getRecipes("vegetables")
+    .then(res => {
+      console.log("Info from API" , res);
+      // let newFood = food.data.value.joke.replace(/&quot;/g, '"');
+      // this.setState({
+      //   featuredfood: newFood
+      // })
     }).catch(err => {
       console.log(err)
     });
@@ -44,7 +47,7 @@ class Home extends Component {
       <div className="homeBox">
         <Joke joke={this.state.joke}/>
         {this.state.loggedIn ? (
-          <Button onClick={e=> {this.getJoke()}} color="warning" block>Get New Joke</Button>
+          <Button onClick={e=> {this.getfood()}} color="warning" block>Get New Joke</Button>
         ) : (<></>)}
       </div>
     );
