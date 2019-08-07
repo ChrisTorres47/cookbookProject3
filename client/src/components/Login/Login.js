@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import { Link } from "react-router-dom";
 
 function Login(props) {
+    console.log("This is props" + props)
     return (
         <div className="loginBox">
             <h2 className="loginTitle title-font">Login</h2>
@@ -21,7 +22,7 @@ function Login(props) {
                 </FormGroup>
                 <Button id="loginBtn" onClick={props.handleLogin} block>Login</Button>
                 <p className="signupLink">
-                    <Link to="/signup">dont have an account?  Sign up here</Link>
+                    <Link to="/signup">Don't have an account?  Sign up here</Link>
                 </p>
             </Form>
         </div>

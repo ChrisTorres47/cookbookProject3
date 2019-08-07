@@ -27,8 +27,12 @@ export default {
   },
 
   // api that gets a random Chuck Norris Joke
-  ChuckNorris: function() {
-    return axios.get("https://api.icndb.com/jokes/random");
-  }
+  getRecipes: function(query) {
+    return axios.get("/api/puppy", {params: {q : query}});
+  },
+
+  // getRecipes: function(query) {
+  //   return axios.get("/api/recipes", { params: { q: query } });
+  // }
 
 };

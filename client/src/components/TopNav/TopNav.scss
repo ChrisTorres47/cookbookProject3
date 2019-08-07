@@ -7,12 +7,11 @@
 
     a.titleFont {
         font-family: $title-font;
-        color: $light-text;
+        color: $dark-text;
     }
 
     a.titleFont:hover {
         color: $light-text;
-        font-weight: bold;
     }
 
     a.nav-link {
@@ -20,6 +19,9 @@
     }
 
     .light-text {
+        color: $dark-text
+    }
+    .light-text:hover {
         color: $light-text
     }
 }

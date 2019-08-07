@@ -19,6 +19,11 @@ const usersSchema = new Schema({
     },
     required: [true, "password is required"]
   },
+  recipes:{
+    type: Array,
+    required: false,
+  },
+
   admin: {
     type: Boolean,
     unique: false,
