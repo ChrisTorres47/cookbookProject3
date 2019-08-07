@@ -16,6 +16,7 @@ class Profile extends Component {
         this.loading();
 
         API.isLoggedIn().then(user => {
+            console.log(user)
             if (user.data.loggedIn) {
                 this.setState({
                     loggedIn: true,
