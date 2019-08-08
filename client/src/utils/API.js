@@ -26,6 +26,10 @@ export default {
     return axios.get("/api/users/logout")
   },
 
+  addRecipe: function(recipe){
+    return axios.post("/api/recipes", recipe);
+  },
+
   // api that gets a random Chuck Norris Joke
   getRecipes: function(query) {
     return axios.get("/api/puppy", {params: {q : query}});

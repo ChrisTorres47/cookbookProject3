@@ -3,12 +3,19 @@ import "./Profile.scss";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom"
 import API from "../../utils/API"
+import { Input, FormBtn } from "../../components/Form";
 
 class Profile extends Component {
     state = {
         loggedIn: false,
         user: null,
-        loading: true
+        loading: true,
+        recipes: [],
+        RecipeName: "",
+        Ingredients: "",
+        Directions: "",
+        FoodPhoto: "",
+        userID: ""
     }
 
     componentDidMount() {
@@ -20,14 +27,15 @@ class Profile extends Component {
             if (user.data.loggedIn) {
                 this.setState({
                     loggedIn: true,
-                    user: user.data.user
+                    user: user.data.user,
+                    userID: user.data.user._id
                 });
+                console.log("This is user" , this.state.user)
             }
         }).catch(err => {
             console.log(err);
         });
 
-        console.log(this.props)
     }
 
     loading() {
@@ -37,10 +45,35 @@ class Profile extends Component {
             })
         }, 1000)
     }
-    
-    saveRecipe(){
 
+    loadRecipes = () => {
+        API.getRecipes()
+            .then(res => 
+                this.setState({recipes: res.data})
+                )
+            .catch(err => console.log(err))
     }
+
+    saveRecipe = (event) => {
+        event.preventDefault();
+        API.addRecipe({
+            RecipeName: this.state.RecipeName,
+            Ingredients: this.state.Ingredients,
+            Directions: this.state.Directions,
+            FoodPhoto: this.state.FoodPhoto,
+            userID: this.state.userID
+        })
+        
+        .then(res => console.log( "This is the save Recipe" ,res), this.loadRecipes())
+        .catch(err => console.log(err));
+    }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+      };
 
     render() {
         return (
@@ -63,28 +96,38 @@ class Profile extends Component {
                             </div>
                         )}
                 </div>
-                <div class="container backColor text-light">
+                <div className="container backColor text-light">
                     <form>
                         <fieldset>
-                            <legend>Add your recipe</legend>
-                            <div class="form-group">
-                                <label for="recipeName">Recipe name</label>
-                                <textarea class="form-control" id="recipeName" rows="1"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="ingredients">List your ingredients here</label>
-                                <textarea class="form-control" id="ingredients" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="directions">List your directions here</label>
-                                <textarea class="form-control" id="directions" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="recipeImage">Picture of your deliciousness</label>
-                                <textarea class="form-control" id="recipeImage" rows="1" placeholder="Enter a URL for an image of your recipe"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary rounded-pill" id="create" onClick="saveRecipe">Submit</button>
-                            <br /><br />
+                            <Input
+                                value={this.state.recipeName}
+                                onChange={this.handleInputChange}
+                                name="RecipeName"
+                                placeholder="Recipe Name"
+                            />
+                            <Input
+                                value={this.state.ingredients}
+                                onChange={this.handleInputChange}
+                                name="Ingredients"
+                                placeholder="Ingredients"
+                            />
+                            <Input
+                                value={this.state.directions}
+                                onChange={this.handleInputChange}
+                                name="Directions"
+                                placeholder="Directions"
+                            />
+                            <Input
+                                value={this.state.foodPhoto}
+                                onChange={this.handleInputChange}
+                                name="FoodPhoto"
+                                placeholder="Picture of food"
+                            />
+                            <FormBtn
+                                onClick={this.saveRecipe}
+                            >
+                                Submit Recipe
+                            </FormBtn>
 
                         </fieldset>
                     </form>
@@ -94,6 +137,26 @@ class Profile extends Component {
         )
     }
 }
+
+{/* <legend>Add your recipe</legend>
+<div class="form-group">
+    <label for="recipeName">Recipe name</label>
+    <textarea class="form-control" id="recipeName" rows="1"></textarea>
+</div>
+<div class="form-group">
+    <label for="ingredients">List your ingredients here</label>
+    <textarea class="form-control" id="ingredients" rows="3"></textarea>
+</div>
+<div class="form-group">
+    <label for="directions">List your directions here</label>
+    <textarea class="form-control" id="directions" rows="3"></textarea>
+</div>
+<div class="form-group">
+    <label for="recipeImage">Picture of your deliciousness</label>
+    <textarea class="form-control" id="recipeImage" rows="1" placeholder="Enter a URL for an image of your recipe"></textarea>
+</div>
+<button type="submit" class="btn btn-primary rounded-pill" id="create" onClick="saveRecipe">Submit</button>
+<br /><br /> */}
 
 
 export default Profile;
