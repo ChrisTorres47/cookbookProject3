@@ -88,9 +88,6 @@ export default class Navigation extends Component {
                                                 <NavLink href="/signup">signup</NavLink>
                                             </DropdownItem>
                                             <DropdownItem>
-                                                <NavLink href="../../pages/Add/add.js">Add Recipe</NavLink>
-                                            </DropdownItem>
-                                            <DropdownItem>
                                                 <NavLink href="/recipes/allrecipes">View All Recipes</NavLink>
                                             </DropdownItem>
                                         </>
