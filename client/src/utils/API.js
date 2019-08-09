@@ -1,6 +1,8 @@
 import axios from "axios";
 
 export default {
+
+//------------FOR USER LOGIN------------------------------
   // logs in user
   login: function(loginInfo) {
     return axios.post("/api/users/login", loginInfo);
@@ -26,7 +28,30 @@ export default {
     return axios.get("/api/users/logout")
   },
 
-  // api that gets a random Chuck Norris Joke
+//---------------CRUD-----------------------------------
+  // Create - Saves a recipe to the database
+  saveRecipe: function(recipeData) {
+    return axios.post("/api/recipes", recipeData);
+  },
+  // Read - Gets all recipes
+  getAllRecipes: function() {
+    return axios.get("/api/recipes");
+  },   
+  // Read - Gets the recipe with the given id
+  getRecipe: function(id) {
+    return axios.get("/api/recipes/" + id);
+  },
+  // Update - Updates recipes in the database
+  updateRecipe: function(id) {
+    return axios.put("/api/recipes/", + id);
+  },
+  // Delete - Deletes the recipe with the given id
+  deleteRecipe: function(id) {
+    return axios.delete("/api/recipes/" + id);
+  },
+
+//-------------Search Routes----------------------------
+  // api that gets a random recipe
   getRecipes: function(query) {
     return axios.get("/api/puppy", {params: {q : query}});
   },
