@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import "./TopNav.scss";
 import API from "../../utils/API";
 import {
@@ -14,6 +15,7 @@ import {
     DropdownMenu,
     DropdownItem,
 } from 'reactstrap';
+
 
 
 
@@ -58,7 +60,7 @@ export default class Navigation extends Component {
         return (
             <div>
                 <Navbar className="navbar" light expand="md">
-                    <NavbarBrand href="/" className="titleFont"><i className="fas fa-coffee"></i>  My Custom Cookbook</NavbarBrand>
+                    <NavbarBrand href="/" className="titleFont"> <img height="50" width="50" src="/assets/images/cukbuk.png" alt="cukbuk logo" /></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>

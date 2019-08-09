@@ -6,7 +6,6 @@ import Auth from "./pages/Auth";
 import NoMatch from "./pages/NoMatch";
 import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
-import add from "./pages/Add/add"
 import { Container } from 'reactstrap';
 
 
@@ -20,7 +19,6 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/signup" render={(props) => <Auth {...props} action="signup" />} />
               <Route exact path="/login" render={(props) => <Auth {...props} action="login" />} />
-              <Route exact path="/add"  component={add} />
               <Route exact path="/profile" component={Profile} />
               <Route component={NoMatch} />
             </Switch>

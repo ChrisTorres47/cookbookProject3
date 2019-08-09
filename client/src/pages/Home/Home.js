@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import API from "../../utils/API";
-import Joke from "../../components/Joke"
+import Carousel from "../../components/Carousel";
+
 import "./Home.scss";
 
 class Home extends Component {
@@ -9,25 +10,29 @@ class Home extends Component {
   state = {
     loggedIn: false,
     featuredfood: "",
-    
+    shuffledArray: []
+
   };
 
   componentDidMount() {
-    this.getfood();
+    // this.getfood();
     this.loggedIn();
   }
 
+  
+  
+
   getfood = () => {
     API.getRecipes("vegetables")
-    .then(res => {
-      console.log("Info from API" , res);
-      // let newFood = food.data.value.joke.replace(/&quot;/g, '"');
-      // this.setState({
-      //   featuredfood: newFood
-      // })
-    }).catch(err => {
-      console.log(err)
-    });
+      .then(res => {
+        console.log("Info from API", res);
+        // let newFood = food.data.value.joke.replace(/&quot;/g, '"');
+        // this.setState({
+        //   featuredfood: newFood
+        // })
+      }).catch(err => {
+        console.log(err)
+      });
   }
 
   loggedIn = () => {
@@ -44,12 +49,20 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="homeBox">
-        <Joke joke={this.state.joke}/>
-        {this.state.loggedIn ? (
-          <Button onClick={e=> {this.getfood()}} color="warning" block>Get New Joke</Button>
-        ) : (<></>)}
+      <div className="homeBox" style={{textAlign:"center"}}>
+        <Carousel> Carousel </Carousel>
+        <form>
+          <input
+            placeholder="Search for a recipe!"
+            ref={input => this.search = input}
+            onChange={this.handleInputChange}
+          />
+          <p>{this.state.query}</p>
+        </form>
+        <p className= "bottomText" style={{textAlign:"center"}}>Access your favorite recipes on the go!</p>
+
       </div>
+
     );
   }
 }
