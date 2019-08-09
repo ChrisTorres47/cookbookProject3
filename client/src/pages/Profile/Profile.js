@@ -47,7 +47,8 @@ class Profile extends Component {
     }
 
     loadRecipes = () => {
-        API.getRecipes()
+        API.getRecipe
+        ()
             .then(res => 
                 this.setState({recipes: res.data})
                 )
@@ -133,6 +134,7 @@ class Profile extends Component {
                     </form>
 
                 </div>
+                
             </>
         )
     }
