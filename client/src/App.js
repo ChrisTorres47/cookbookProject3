@@ -5,7 +5,6 @@ import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import AllRecipes from "./pages/AllRecipes"
 import OneRecipe from "./pages/OneRecipe"
-import AddRecipe from "./pages/AddRecipe"
 import NoMatch from "./pages/NoMatch";
 import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
@@ -27,7 +26,6 @@ function App() {
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/recipes/allrecipes" component={AllRecipes} />
               <Route exact path="/recipes/onerecipe/:id" component={OneRecipe} />
-              <Route exact path="/recipes/addrecipe" component={AddRecipe} />
               <Route component={NoMatch} />
             </Switch>
           </Container>
