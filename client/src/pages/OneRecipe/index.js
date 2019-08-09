@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import API from "../../utils/API";
-import "./Home.scss";
+import "./OneRecipe.scss";
 
-class Home extends Component {
+class OneRecipe extends Component {
 
   state = {
     loggedIn: false,
@@ -44,6 +44,7 @@ class Home extends Component {
   render() {
     return (
       <div className="homeBox">
+        <h1>This is the OneRecipe page.</h1>
         {this.state.loggedIn ? (
           <Button onClick={e=> {this.getfood()}} color="warning" block>Get New Joke</Button>
         ) : (<></>)}
@@ -52,4 +53,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default OneRecipe;
