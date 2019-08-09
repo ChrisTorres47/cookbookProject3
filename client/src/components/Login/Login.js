@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import { Link } from "react-router-dom";
 
 function Login(props) {
-    console.log("This is props" + props)
+    console.log("This is props" , props)
     return (
         <div className="loginBox">
             <h2 className="loginTitle title-font">Login</h2>

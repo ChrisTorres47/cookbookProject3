@@ -2,6 +2,7 @@ const router = require("express").Router();
 const passport = require("../../config/passport");
 const db = require("../../models");
 const authMiddleware = require("../../config/middleware/authMiddleware");
+const usercontroller = require("../../controller/userController")
 
 // /api/users/login
 // route to login the user
@@ -40,6 +41,8 @@ router.post("/signup", function(req, res, next) {
     }
   })
 });
+router.route("user/:id")
+  .put(usercontroller.update);
 
 // /api/users/unauthorized
 // route that gets hit if user is not logged in
@@ -81,12 +84,14 @@ router.get("/admin", authMiddleware.isAdmin, function(req, res, next) {
 });
 
 router.get("/user", authMiddleware.isLoggedIn, function(req, res, next) {
-  db.User.findByIdAndUpdate(req.user._id).populate('todos').then((user) => {
+  db.User.findByIdAndUpdate(req.user._id).populate('recipes').then((user) => {
     res.json(user);
   }).catch((err) => {
     res.json(err);
   });
 });
+
+
 
 
 

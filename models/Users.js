@@ -19,10 +19,10 @@ const usersSchema = new Schema({
     },
     required: [true, "password is required"]
   },
-  recipes:{
-    type: Array,
-    required: false,
-  },
+  recipes:[{
+    type: Schema.Types.ObjectId,
+    ref: "Recipe"
+  }],
 
   admin: {
     type: Boolean,
@@ -33,11 +33,7 @@ const usersSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now()
-  },
-  todos: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Todo'
-  }]
+  }
 });
 
 usersSchema.methods.generateHash = function (password) {
