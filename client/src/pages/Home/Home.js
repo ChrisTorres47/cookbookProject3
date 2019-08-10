@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
 import API from "../../utils/API";
 import Carousel from "../../components/Carousel";
+import Search from "../../components/Search";
 
 import "./Home.scss";
 
@@ -49,14 +49,7 @@ class Home extends Component {
     return (
       <div className="homeBox" style={{textAlign:"center"}}>
         <Carousel> Carousel </Carousel>
-        <form>
-          <input
-            placeholder="Search for a recipe!"
-            ref={input => this.search = input}
-            onChange={this.handleInputChange}
-          />
-          <p>{this.state.query}</p>
-        </form>
+        <Search />
         <p className= "bottomText" style={{textAlign:"center"}}>Access your favorite recipes on the go!</p>
 
       </div>
