@@ -26,9 +26,9 @@ export function RecipeListItem({
           <Col size="xs-8 sm-9">
             <h3>{title}</h3>
             <p>Ingredients: {ingredients}</p>
-            <link rel="noreferrer noopener" target="_blank" href={href}>
+            <a rel="noreferrer noopener" target="_blank" href={href}>
               Go to recipe!
-            </link>
+            </a>
           </Col>
         </Row>
       </Container>
