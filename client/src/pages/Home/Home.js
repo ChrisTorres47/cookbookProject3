@@ -47,10 +47,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="homeBox" style={{textAlign:"center"}}>
+      <div className="homeBox" >
         <Carousel> Carousel </Carousel>
         <Search />
-        <p className= "bottomText" style={{textAlign:"center"}}>Access your favorite recipes on the go!</p>
+        <p className= "bottomText" >Access your favorite recipes on the go!</p>
 
       </div>
 

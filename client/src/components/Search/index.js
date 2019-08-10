@@ -33,8 +33,6 @@ class Search  extends Component {
   render() {
     return (
       <div>
-        <TopNav />
-        
         <Container>
           <Row>
             <Col size="md-12">
