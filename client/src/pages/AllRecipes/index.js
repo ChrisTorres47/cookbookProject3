@@ -4,11 +4,28 @@ import TopNav from "../../components/TopNav"
 import { RecipeList, RecipeListItem } from "../../components/RecipeList";
 import { Container, Row, Col } from "../../components/Grid";
 
+
 class AllRecipes extends Component {
     state = {
       recipes: [],
-      recipeSearch: ""
+      recipeSearch: "",
+      userId: "",
+
     };
+    componentDidMount() {
+      this.loadUserAllRecipes();
+    }
+  
+    loadUserAllRecipes = () => {
+      API.getAllRecipes()
+        .then(res =>
+          this.setState({ recipes: res.data,  })
+        )
+        .catch(err => console.log(err));
+    };
+
+  
+  
   
     handleInputChange = event => {
       // Destructure the name and value properties off of event.target
@@ -22,12 +39,13 @@ class AllRecipes extends Component {
     handleFormSubmit = event => {
       // When the form is submitted, prevent its default behavior, get recipes update the recipes state
       event.preventDefault();
-      API.getRecipes(this.state.recipeSearch)
-        .then(res => this.setState({ recipes: res.data }))
-        .catch(err => console.log(err));
+      API.saveRecipe(this.state.recipeSearch)
+      .then(res => this.setState({ recipes: res.data }))
+      .catch(err => console.log(err));
     };
-  
+           
     render() {
+      console.log(this.state.recipes)
       return (
         <div>
           <Container>
@@ -39,11 +57,12 @@ class AllRecipes extends Component {
                     {this.state.recipes.map(recipe => {
                       return (
                         <RecipeListItem
-                          key={recipe.title}
-                          title={recipe.title}
-                          href={recipe.href}
-                          ingredients={recipe.ingredients}
-                          thumbnail={recipe.thumbnail}
+                          key={recipe._id}
+                          title={recipe.RecipeName}
+                        
+                          ingredients={recipe.Ingredients}
+                          directions={recipe.Directions}
+                          image={recipe.FoodPhoto}
                         />
                       );
                     })}

@@ -66,6 +66,10 @@ class Profile extends Component {
         .catch(err => console.log(err));
     }
 
+    
+
+
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({

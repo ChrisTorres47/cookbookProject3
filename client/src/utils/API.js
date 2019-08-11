@@ -30,7 +30,7 @@ export default {
 
 //---------------CRUD-----------------------------------
   // Create - Saves a recipe to the database
-  saveRecipe: function(recipeData) {
+  addRecipe: function(recipeData) {
     return axios.post("/api/recipes", recipeData);
   },
   // Read - Gets all recipes
