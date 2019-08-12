@@ -4,7 +4,9 @@ import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import { Input, FormBtn } from "../../components/Form";
-
+import { Col, Row, Container } from "../../components/Grid";
+import { List, ListItem } from "../../components/List";
+import Jumbotron from "../../components/Jumbotron";
 class Profile extends Component {
     state = {
         loggedIn: false,
@@ -23,12 +25,13 @@ class Profile extends Component {
         API.isLoggedIn().then(user => {
             console.log(user)
             if (user.data.loggedIn) {
+                var currentUser = user.data.user._id
                 this.setState({
                     loggedIn: true,
                     user: user.data.user,
-                    userID: user.data.user._id
-                });
-                console.log("This is user" , this.state.user)
+                    userID: currentUser
+                }, () => this.loadRecipes());
+                console.log("This is user", this.state.user)
             }
         }).catch(err => {
             console.log(err);
@@ -36,7 +39,7 @@ class Profile extends Component {
 
     }
 
-    loading() {
+    loading = () => {
         setTimeout(() => {
             this.setState({
                 loading: false
@@ -45,11 +48,17 @@ class Profile extends Component {
     }
 
     loadRecipes = () => {
-        API.getRecipe
-        ()
-            .then(res => 
-                this.setState({recipes: res.data})
-                )
+        API.getAllRecipes()
+            .then(res => {
+                console.log(res.data)
+                const userRecipes = res.data.filter(item => {
+                    return item.userID === this.state.userID
+                })
+                console.log("This is userRecipes", userRecipes)
+                this.setState({
+                    recipes: userRecipes,
+                })
+            })
             .catch(err => console.log(err))
     }
 
@@ -62,21 +71,21 @@ class Profile extends Component {
             FoodPhoto: this.state.FoodPhoto,
             userID: this.state.userID
         })
-        
-        .then(res => console.log( "This is the save Recipe" ,res), this.loadRecipes())
-        .catch(err => console.log(err));
+
+            .then(res => console.log("This is the save Recipe", res), this.loadRecipes())
+            .catch(err => console.log(err));
     }
 
-    
+
 
 
 
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
+    };
 
     render() {
         return (
@@ -99,71 +108,70 @@ class Profile extends Component {
                             </div>
                         )}
                 </div>
-                    <form>
-                        <fieldset>
-                            <Input
-                                value={this.state.recipeName}
-                                onChange={this.handleInputChange}
-                                name="RecipeName"
-                                placeholder="Recipe Name"
-                            />
-                            <Input
-                                value={this.state.ingredients}
-                                onChange={this.handleInputChange}
-                                name="Ingredients"
-                                placeholder="Ingredients"
-                            />
-                            <Input
-                                value={this.state.directions}
-                                onChange={this.handleInputChange}
-                                name="Directions"
-                                placeholder="Directions"
-                            />
-                            <Input
-                                value={this.state.foodPhoto}
-                                onChange={this.handleInputChange}
-                                name="FoodPhoto"
-                                placeholder="Picture of food"
-                            />
-                            <FormBtn
-                                onClick={this.saveRecipe}
-                            >
-                                Submit Recipe
+                <form>
+                    <fieldset>
+                        <Input
+                            value={this.state.recipeName}
+                            onChange={this.handleInputChange}
+                            name="RecipeName"
+                            placeholder="Recipe Name"
+                        />
+                        <Input
+                            value={this.state.ingredients}
+                            onChange={this.handleInputChange}
+                            name="Ingredients"
+                            placeholder="Ingredients"
+                        />
+                        <Input
+                            value={this.state.directions}
+                            onChange={this.handleInputChange}
+                            name="Directions"
+                            placeholder="Directions"
+                        />
+                        <Input
+                            value={this.state.foodPhoto}
+                            onChange={this.handleInputChange}
+                            name="FoodPhoto"
+                            placeholder="Picture of food"
+                        />
+                        <FormBtn
+                            onClick={this.saveRecipe}
+                        >
+                            Submit Recipe
                             </FormBtn>
 
-                        </fieldset>
-                    </form>
+                    </fieldset>
+                </form>
 
-               
-                
+
+                <div>
+                    <Col size="md-6 sm-12">
+                        <Jumbotron>
+                            <h1>My saved recipes</h1>
+                        </Jumbotron>
+                        {this.state.recipes.length ? (
+                            <List>
+                                {this.state.recipes.map(recipe => (
+                                    <ListItem key={recipe._id}>
+                                        <Link to={"/recipes/allrecipes"}>
+                                            <strong>
+                                                {recipe.RecipeName}
+                                            </strong>
+                                        </Link>
+                                    </ListItem>
+                                )
+                                )}
+                            </List>
+                        ) : (
+                                <h3>No Results to Display</h3>
+                            )}
+                    </Col>
+                </div>
             </>
-            
+
         )
     }
 }
 
-{/* <legend>Add your recipe</legend>
-<div class="form-group">
-    <label for="recipeName">Recipe name</label>
-    <textarea class="form-control" id="recipeName" rows="1"></textarea>
-</div>
-<div class="form-group">
-    <label for="ingredients">List your ingredients here</label>
-    <textarea class="form-control" id="ingredients" rows="3"></textarea>
-</div>
-<div class="form-group">
-    <label for="directions">List your directions here</label>
-    <textarea class="form-control" id="directions" rows="3"></textarea>
-</div>
-<div class="form-group">
-    <label for="recipeImage">Picture of your deliciousness</label>
-    <textarea class="form-control" id="recipeImage" rows="1" placeholder="Enter a URL for an image of your recipe"></textarea>
-</div>
-<button type="submit" class="btn btn-primary rounded-pill" id="create" onClick="saveRecipe">Submit</button>
-<br /><br /> */}
-
 
 export default Profile;
-
-
-
