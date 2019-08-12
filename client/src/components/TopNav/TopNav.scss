@@ -2,22 +2,27 @@
 
 .navbar {
     background: $primary-color;
-    box-shadow: 0 3px 10px $dark-text;
     font-family: $text-font;
+    
+    .center-navbar {
+        width:30%;
+        margin-left: 35%;
+        
+      }
 
     a.titleFont {
         font-family: $title-font;
         color: $dark-text;
     }
-
+    
     a.titleFont:hover {
         color: $light-text;
     }
-
+    
     a.nav-link {
         font-size: 1.2em;
     }
-
+    
     .light-text {
         color: $dark-text
     }

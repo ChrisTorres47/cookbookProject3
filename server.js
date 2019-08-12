@@ -9,11 +9,12 @@ const passport = require("passport");
 const logger = require("morgan");
 const flash = require('connect-flash');
 
+// Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger("dev"));
 app.use(flash())
-app.use(express.static("public"));
+app.use(express.static("./public"));
 app.use(session({
     secret: "keyboard cat",
     resave: false,
@@ -23,23 +24,21 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-
+// Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
+// Add routes, both API and view
 app.use(routes);
 
+// Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/react-auth-simple", { useNewUrlParser: true }, function(err) {
     if (err) throw err;
     console.log(`mongoose connection successful`.yellow);
+    // Start the API server
     app.listen(PORT, (err)=> {
         if (err) throw err;
         console.log(`connected on port ${PORT}`.cyan)
     });
 });
-
-
-
