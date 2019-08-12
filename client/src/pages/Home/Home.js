@@ -4,8 +4,9 @@ import Jumbotron from "../../components/Jumbotron";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import API from "../../utils/API";
-import { RecipeList, RecipeListItem } from "../../components/RecipeList";
+import { ApiRecipeList, RecipeListItem } from "../../components/ApiRecipeList";
 import { Container, Row, Col } from "../../components/Grid";
+import ApiThumbnail from "../../components/ApiThumbnail"
 
 class Home extends Component {
     state = {
@@ -66,7 +67,7 @@ class Home extends Component {
             <Row>
               <Col size="xs-12">
                 {!this.state.recipes.length ? (<h1 className="text-center">No Recipes to Display</h1>) : (
-                  <RecipeList>
+                  <ApiRecipeList>
                     {this.state.recipes.map(recipe => {
                       return (
                         <RecipeListItem
@@ -78,7 +79,7 @@ class Home extends Component {
                         />
                       );
                     })}
-                  </RecipeList>
+                  </ApiRecipeList>
                 )}
               </Col>
             </Row>
