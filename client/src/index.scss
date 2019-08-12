@@ -1,12 +1,12 @@
 
 @import "./sass/variable.scss";
 
-html, body {
-    background: $background-color;
+html, body, #app, #app>div {
     height: 100%;
-    margin: 0;
-    position: relative;
+    margin: 0px;
+    // background: slategray;
 }
+
 
 .notFound {
     margin-top: 75px;

@@ -53,7 +53,7 @@ export default {
 //-------------Search Routes----------------------------
   // api that gets a random recipe
   getRecipes: function(query) {
-    return axios.get("/api/puppy", {params: {q : query}});
+  return axios.get("/api/puppy", {params: {q : query}});
   },
 
   // getRecipes: function(query) {

@@ -38,7 +38,7 @@ class Home extends Component {
           <Container>
             <Row>
               <Col size="md-12">
-                <form style={{margin:15}}>
+                <form>
                   <Container>
                     <Row>
                       <Col size="xs-9 sm-10">
