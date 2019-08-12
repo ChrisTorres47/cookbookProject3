@@ -60,7 +60,7 @@ export default class Navigation extends Component {
         return (
             <div>
                 <Navbar className="navbar" light expand="md">
-                    <NavbarBrand href="/" className="titleFont"> <img height="50" width="50" src="/assets/images/cukbuk.png" alt="cukbuk logo" /></NavbarBrand>
+                    <NavbarBrand href="/" className="titleFont"><img height="50" width="50" src="/assets/images/cukbuk.png" alt="cukbuk logo"/></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -88,9 +88,6 @@ export default class Navigation extends Component {
                                             </DropdownItem>
                                             <DropdownItem>
                                                 <NavLink href="/signup">signup</NavLink>
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                <NavLink href="../../pages/Add/add.js">Add Recipe</NavLink>
                                             </DropdownItem>
                                             <DropdownItem>
                                                 <NavLink href="/recipes/allrecipes">View All Recipes</NavLink>
