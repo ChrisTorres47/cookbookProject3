@@ -4,6 +4,10 @@ import { Button } from "reactstrap";
 import { Link } from "react-router-dom"
 import API from "../../utils/API"
 import { Input, FormBtn } from "../../components/Form";
+import { Col, Row, Container } from "../../components/Grid";
+import { List, ListItem } from "../../components/List";
+import Jumbotron from "../../components/Jumbotron";
+
 
 class Profile extends Component {
     state = {
@@ -21,16 +25,18 @@ class Profile extends Component {
     componentDidMount() {
 
         this.loading();
+        this.loadRecipes();
 
         API.isLoggedIn().then(user => {
             console.log(user)
             if (user.data.loggedIn) {
+                var currentUser = user.data.user._id
                 this.setState({
                     loggedIn: true,
                     user: user.data.user,
-                    userID: user.data.user._id
+                    userID: currentUser
                 });
-                console.log("This is user" , this.state.user)
+                console.log("This is user", this.state.user)
             }
         }).catch(err => {
             console.log(err);
@@ -47,11 +53,21 @@ class Profile extends Component {
     }
 
     loadRecipes = () => {
-        API.getRecipe
-        ()
-            .then(res => 
-                this.setState({recipes: res.data})
-                )
+        API.getRecipe(this.state.userID)
+            .then(res => {
+                console.log(res.data)
+                for(let i=0; i < res.data.length; i++){
+                    if(this.state.userID = res.data[i].userID){
+                        // console.log("This made it in the if" ,this.state.userID)
+                        this.setState({
+                            recipes: res.data[i]
+                        })
+                    }
+                }
+            }
+               
+                // this.setState({ recipes: res.data })
+            )
             .catch(err => console.log(err))
     }
 
@@ -64,17 +80,17 @@ class Profile extends Component {
             FoodPhoto: this.state.FoodPhoto,
             userID: this.state.userID
         })
-        
-        .then(res => console.log( "This is the save Recipe" ,res), this.loadRecipes())
-        .catch(err => console.log(err));
+
+            .then(res => console.log("This is the save Recipe", res), this.loadRecipes())
+            .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
+    };
 
     render() {
         return (
@@ -134,7 +150,31 @@ class Profile extends Component {
                     </form>
 
                 </div>
-                
+                <div>
+                    <Col size="md-6 sm-12">
+                        <Jumbotron>
+                            <h1>My saved recipes</h1>
+                        </Jumbotron>
+                        {this.state.recipes.length ? (
+                            <List>
+                                {this.state.recipes.map(recipe =>{
+                                    console.log("This is recipe", recipe)
+                                 (
+                                    <ListItem key={recipe._id}>
+                                        <Link to={"/books/" + recipe._id}>
+                                            <strong>
+                                                {recipe.recipeName}
+                                            </strong>
+                                        </Link>
+                                        {/* <DeleteBtn onClick={() => this.deleteBook(book._id)} /> */}
+                                    </ListItem>
+                                )})}
+                            </List>
+                        ) : (
+                                <h3>No Results to Display</h3>
+                            )}
+                    </Col>
+                </div>
             </>
         )
     }
