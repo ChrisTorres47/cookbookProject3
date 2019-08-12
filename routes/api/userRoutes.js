@@ -89,7 +89,11 @@ router.get("/user", authMiddleware.isLoggedIn, function(req, res, next) {
   }).catch((err) => {
     res.json(err);
   });
+
+
 });
+
+
 
 
 

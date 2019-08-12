@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Profile.scss";
 import { Button } from "reactstrap";
-import { Link } from "react-router-dom"
-import API from "../../utils/API"
+import { Link } from "react-router-dom";
+import API from "../../utils/API";
 import { Input, FormBtn } from "../../components/Form";
 
 class Profile extends Component {
@@ -17,9 +17,7 @@ class Profile extends Component {
         FoodPhoto: "",
         userID: ""
     }
-
     componentDidMount() {
-
         this.loading();
 
         API.isLoggedIn().then(user => {
@@ -69,6 +67,10 @@ class Profile extends Component {
         .catch(err => console.log(err));
     }
 
+    
+
+
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -97,7 +99,6 @@ class Profile extends Component {
                             </div>
                         )}
                 </div>
-                <div className="container backColor text-light">
                     <form>
                         <fieldset>
                             <Input
@@ -133,9 +134,10 @@ class Profile extends Component {
                         </fieldset>
                     </form>
 
-                </div>
+               
                 
             </>
+            
         )
     }
 }
@@ -162,3 +164,6 @@ class Profile extends Component {
 
 
 export default Profile;
+
+
+

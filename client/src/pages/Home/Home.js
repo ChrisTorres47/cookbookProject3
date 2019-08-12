@@ -19,6 +19,8 @@ class Home extends Component {
     this.loggedIn();
   }
 
+  
+  
 
   getfood = () => {
     API.getRecipes("vegetables")
@@ -47,12 +49,27 @@ class Home extends Component {
 
   render() {
     return (
+      
+      <>
+      <div className="homeBox" style={{textAlign:"center"}}>
+        <Carousel> Carousel </Carousel>
+        <form>
+          <input
+            placeholder="Search for a recipe!"
+            ref={input => this.search = input}
+            onChange={this.handleInputChange}
+          />
+          <p>{this.state.query}</p>
+        </form>
+        </div>
+        <p className= "bottomText" style={{textAlign:"center"}}>Access your favorite recipes on the go!</p>
       <div className="homeBox" >
         <Carousel> Carousel </Carousel>
         <Search />
         <p className= "bottomText" >Access your favorite recipes on the go!</p>
 
       </div>
+      </>
 
     );
   }
