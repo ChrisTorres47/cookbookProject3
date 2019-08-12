@@ -80,6 +80,9 @@ export default class Navigation extends Component {
                                             <DropdownItem>
                                                 <NavLink onClick={this.logout}>Logout</NavLink>
                                             </DropdownItem>
+                                            <DropdownItem>
+                                                <NavLink href="/recipes/allrecipes">View All Recipes</NavLink>
+                                            </DropdownItem>
                                         </>
                                     ) : (
                                         <>
@@ -88,9 +91,6 @@ export default class Navigation extends Component {
                                             </DropdownItem>
                                             <DropdownItem>
                                                 <NavLink href="/signup">signup</NavLink>
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                <NavLink href="/recipes/allrecipes">View All Recipes</NavLink>
                                             </DropdownItem>
                                         </>
                                     )}
