@@ -6,7 +6,7 @@ import { Container, Row, Col } from "../Grid";
 
 // RecipeList renders a bootstrap list item
 export function RecipeList({ children }) {
-  return <ul className="list-group">{children}</ul>; 
+  return <ul className="list-group">{children}</ul>;
 }
 
 // RecipeListItem renders a bootstrap list item containing data from the recipe api call
