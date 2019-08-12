@@ -155,12 +155,15 @@ class MyCarousel extends Component {
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
   }
+
   onExiting() {
     this.animating = true;
   }
+
   onExited() {
     this.animating = false;
   }
+
   next() {
     if (this.animating) return;
     const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
@@ -175,8 +178,10 @@ class MyCarousel extends Component {
     if (this.animating) return;
     this.setState({ activeIndex: newIndex });
   }
+
   render() {
     const { activeIndex } = this.state;
+
     const slides = items.map((item) => {
       return (
         <CarouselItem
@@ -203,10 +208,6 @@ class MyCarousel extends Component {
     );
   }
 }
+
+
 export default MyCarousel;
-
-
-
-
-
-
