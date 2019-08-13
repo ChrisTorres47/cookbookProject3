@@ -7,6 +7,8 @@ import { Input, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import Jumbotron from "../../components/Jumbotron";
+
+
 class Profile extends Component {
     state = {
         loggedIn: false,
@@ -21,7 +23,7 @@ class Profile extends Component {
     }
     componentDidMount() {
         this.loading();
-
+        
         API.isLoggedIn().then(user => {
             console.log(user)
             if (user.data.loggedIn) {
@@ -36,7 +38,7 @@ class Profile extends Component {
         }).catch(err => {
             console.log(err);
         });
-
+        
     }
 
     loading = () => {
@@ -51,7 +53,7 @@ class Profile extends Component {
         API.getAllRecipes()
             .then(res => {
                 console.log(res.data)
-                const userRecipes = res.data.filter(item => {
+               const userRecipes = res.data.filter(item => {
                     return item.userID === this.state.userID
                 })
                 console.log("This is userRecipes", userRecipes)
@@ -152,14 +154,14 @@ class Profile extends Component {
                         {this.state.recipes.length ? (
                             <List>
                                 {this.state.recipes.map(recipe => (
-                                    <ListItem key={recipe._id}>
-                                        <Link to={"/recipes/allrecipes"}>
-                                            <strong>
-                                                {recipe.RecipeName}
-                                            </strong>
-                                        </Link>
-                                    </ListItem>
-                                )
+                                            <ListItem key={recipe._id}>
+                                                <Link to={"/recipes/allrecipes"}>
+                                                    <strong>
+                                                        {recipe.RecipeName}
+                                                    </strong>
+                                                </Link>
+                                            </ListItem>
+                                        )
                                 )}
                             </List>
                         ) : (
