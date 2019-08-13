@@ -7,11 +7,8 @@ import { Input, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import Jumbotron from "../../components/Jumbotron";
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 731470bbb2fe2f6dc60c7a5ea6dd0a232dfa86c7
 class Profile extends Component {
     state = {
         loggedIn: false,
